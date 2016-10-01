@@ -10,7 +10,9 @@ peg =  {
 }
 
 def verify_hanoi_property(peg):
-    # throw an exception if a bigger peg is kept on top of a smaller peg
+    # raise an exception if a bigger peg is kept on top of a smaller peg
+
+    # if the peg is not reverse-sorted... raise an Exception
     if peg != sorted(peg, reverse=True):
         raise Exception('Bigger peg kept on top of smaller peg!')
 
@@ -20,17 +22,21 @@ def get_spare_peg(peg1, peg2):
     peg2 = peg2.upper()
 
     pegs = (peg1 + peg2)
+
+    # lookup table to find out the spare peg
     spare = {
-        'AB': 'C', 'BA': 'C',
-        'AC': 'B', 'CA': 'B',
-        'BC': 'A', 'CB': 'A'
+        'AB': 'C',
+        'BA': 'C',
+        'AC': 'B',
+        'CA': 'B',
+        'BC': 'A',
+        'CB': 'A'
     }
 
     if pegs in spare:
         return spare[pegs]
     else:
-        raise Exception('Invalid pegs!')
-        # return None
+        raise Exception('Invalid peg letters!')
 
 def solve_hanoi(n, from_peg, to_peg):
     # convert to upper case (sometimes redundantly) to prevent problems later
@@ -43,7 +49,7 @@ def solve_hanoi(n, from_peg, to_peg):
     # print(from_peg, peg[from_peg])
     # print(to_peg, peg[to_peg])
 
-    if n == 0:
+    if n == 0: 
         return
     elif n == 1:
         peg[to_peg].append(peg[from_peg].pop())
@@ -68,7 +74,7 @@ def main():
     print(" Peg C: ", peg['C'])
     print("")
 
-    solve_hanoi(8, 'a', 'C')
+    solve_hanoi(8, 'A', 'C')
 
     print(" After Solving: ")
     print(" Peg A: ", peg['A'])
