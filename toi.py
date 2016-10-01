@@ -49,7 +49,9 @@ def solve_hanoi(n, from_peg, to_peg):
     # print(from_peg, peg[from_peg])
     # print(to_peg, peg[to_peg])
 
-    if n == 0: 
+    if n < 1:
+        # to handle cases where somebody decides to call
+        # with ridiculous values for n
         return
     elif n == 1:
         peg[to_peg].append(peg[from_peg].pop())
